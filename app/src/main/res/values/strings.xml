@@ -11,4 +11,5 @@
     <string name="getting_current_weather">Getting current weather…</string>
     <string name="humidity_label">Humidity</string>
     <string name="precip_chance_label">Precipitation Chance</string>
+    <string name="time_label_setter">At %1$s it will be.</string>
 </resources>

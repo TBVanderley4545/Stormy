@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.precipValue) TextView mPrecipValue;
     @Bind(R.id.summaryLabel) TextView mSummaryLabel;
     @Bind(R.id.iconImageView) ImageView mIconImageView;
+    @Bind(R.id.refreshImageView) ImageView mRefreshImageView;
 
 
     @Override
@@ -49,9 +51,26 @@ public class MainActivity extends AppCompatActivity {
         // Below is how we attach ButterKnife
         ButterKnife.bind(this);
 
+        // Establish latitude and longitude
+        final double latitude = 36.209538;
+        final double longitude = -81.703724;
+
+        // Create an onClickListener for out mRefreshImageView
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getForecast(latitude, longitude);
+
+            }
+        };
+        mRefreshImageView.setOnClickListener(listener);
+
+        getForecast(latitude, longitude);
+    }
+
+    private void getForecast(double latitude, double longitude) {
         String apiKey = "eab2de607489e1190b98c8107fc269af";
-        double latitude = 36.209538;
-        double longitude = -81.703724;
+
         String forecastURL = "https://api.forecast.io/forecast/" + apiKey + "/" + latitude
                 + "," + longitude;
 
@@ -106,10 +125,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        mTemperatureLabel.setText(Double.toString(mCurrentWeather.getTemperature()));
-        mTimeLabel.setText("At " + mCurrentWeather.getFormattedTime() + " it will be.");
+        mTemperatureLabel.setText(Integer.toString(mCurrentWeather.getTemperature()));
+
+        // Create a formatted String object
+        String timeSetter = getResources().getString(R.string.time_label_setter);
+        timeSetter = String.format(timeSetter, mCurrentWeather.getFormattedTime());
+        // Set the time wth the formatted String resource.
+        mTimeLabel.setText(timeSetter);
+
         mHumidityValue.setText(Double.toString(mCurrentWeather.getHumidity()));
-        mPrecipValue.setText(Double.toString(mCurrentWeather.getPrecipChance()));
+        mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
         mSummaryLabel.setText(mCurrentWeather.getSummary());
 
         Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
