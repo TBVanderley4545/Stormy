@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.summaryLabel) TextView mSummaryLabel;
     @Bind(R.id.iconImageView) ImageView mIconImageView;
     @Bind(R.id.refreshImageView) ImageView mRefreshImageView;
+    @Bind(R.id.progressBar) ProgressBar mProgressBar;
 
 
     @Override
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Below is how we attach ButterKnife
         ButterKnife.bind(this);
+
+        mProgressBar.setVisibility(View.INVISIBLE);
 
         // Establish latitude and longitude
         final double latitude = 36.209538;
@@ -76,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if network is available first to prevent an exception from being thrown
         if(isNetworkAvailable()) {
+            // Set the ProgressBar as Visible and Refresh as Invisible
+            toggleRefresh();
+
             // First create a new OkHTTPClient
             OkHttpClient client = new OkHttpClient();
 
@@ -91,12 +98,25 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            toggleRefresh();
+                        }
+                    });
 
+                    alertUserAboutError();
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
-                    // Receive a Response from the Call by using the execute method.
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            toggleRefresh();
+                        }
+                    });
+
                     try {
                         String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
@@ -114,13 +134,23 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "Exception caught: ", e);
-                    } catch(JSONException e) {
+                    } catch (JSONException e) {
                         Log.e(TAG, "Exception caught: ", e);
                     }
                 }
             });
         } else {
             alertUserAboutNetworkError();
+        }
+    }
+
+    private void toggleRefresh() {
+        if (mProgressBar.getVisibility() == View.INVISIBLE) {
+            mProgressBar.setVisibility(View.VISIBLE);
+            mRefreshImageView.setVisibility(View.INVISIBLE);
+        } else {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            mRefreshImageView.setVisibility(View.VISIBLE);
         }
     }
 
