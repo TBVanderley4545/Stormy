@@ -1,4 +1,6 @@
-package com.tbvanderleystudios.stormy;
+package com.tbvanderleystudios.stormy.weather;
+
+import com.tbvanderleystudios.stormy.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
