@@ -85,31 +85,7 @@ public class CurrentWeather {
     }
 
     public int getIconId() {
-        int iconId = R.drawable.clear_day;
-
-        if (mIcon.equals("clear-day")) {
-            iconId = R.drawable.clear_day;
-        } else if (mIcon.equals("clear-night")) {
-            iconId = R.drawable.clear_night;
-        } else if (mIcon.equals("rain")) {
-            iconId = R.drawable.rain;
-        } else if (mIcon.equals("snow")) {
-            iconId = R.drawable.rain;
-        } else if (mIcon.equals("sleet")) {
-            iconId = R.drawable.sleet;
-        } else if (mIcon.equals("wind")) {
-            iconId = R.drawable.wind;
-        } else if (mIcon.equals("fog")) {
-            iconId = R.drawable.fog;
-        } else if (mIcon.equals("cloudy")) {
-            iconId = R.drawable.cloudy;
-        } else if (mIcon.equals("partly-cloudy-day")) {
-            iconId = R.drawable.partly_cloudy;
-        } else if (mIcon.equals("partly-cloudy-night")) {
-            iconId = R.drawable.cloudy_night;
-        }
-
-        return iconId;
+        return Forecast.getIconId(mIcon);
     }
 
     public String getFormattedTime() {
@@ -117,7 +93,7 @@ public class CurrentWeather {
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
         // We had to set the timezone for the SimpleDateFormat object that we called formatter
         formatter.setTimeZone(TimeZone.getTimeZone(mTimeZone));
-        // We need to convert the Unix time in seconds into miliseconds for
+        // We need to convert the Unix time in milliseconds into seconds for
         // for the formatter object's required Date argument
         Date dateTime = new Date(mTime * 1000);
         // Create a String from the SimpleDateFormat object.

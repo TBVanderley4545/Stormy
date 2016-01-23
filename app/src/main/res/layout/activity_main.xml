@@ -11,7 +11,7 @@
     android:background="@drawable/bg_gradient">
 
     <TextView
-        android:id="@+id/temperatureLabel"
+        android:id="@+id/temperatureMinLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -24,9 +24,9 @@
         android:id="@+id/degreeImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/temperatureLabel"
-        android:layout_toRightOf="@+id/temperatureLabel"
-        android:layout_toEndOf="@+id/temperatureLabel"
+        android:layout_alignTop="@+id/temperatureMinLabel"
+        android:layout_toRightOf="@+id/temperatureMinLabel"
+        android:layout_toEndOf="@+id/temperatureMinLabel"
         android:layout_marginTop="50dp"
         android:src="@drawable/degree"/>
 
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/temperatureLabel"
+        android:layout_above="@+id/temperatureMinLabel"
         android:textColor="#80ffffff"
         android:text="@string/empty_ui_string"
         android:textSize="18sp"/>
@@ -65,7 +65,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/temperatureLabel"
+        android:layout_below="@+id/temperatureMinLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:weightSum="1">

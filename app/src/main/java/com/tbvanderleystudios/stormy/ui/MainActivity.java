@@ -37,6 +37,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String DAILY_FORECAST = "DAILY_FORECAST";
 
     // Declare the Forecast data model
     private Forecast mForecast;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     // ButterKnife. The line of code immediately below this comment is the same as:
     // private TextView mTimeLabel = (TextView) findViewById(R.id.timeLabel);
     @Bind(R.id.timeLabel) TextView mTimeLabel;
-    @Bind(R.id.temperatureLabel) TextView mTemperatureLabel;
+    @Bind(R.id.temperatureMinLabel) TextView mTemperatureLabel;
     @Bind(R.id.locationLabel) TextView mLocationLabel;
     @Bind(R.id.humidityValue) TextView mHumidityValue;
     @Bind(R.id.precipValue) TextView mPrecipValue;
@@ -323,6 +324,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick (R.id.dailyButton)
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
+        intent.putExtra(DAILY_FORECAST, mForecast.getDailyWeathers());
         startActivity(intent);
     }
 }
