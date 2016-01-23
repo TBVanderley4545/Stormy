@@ -70,6 +70,9 @@ public class DailyWeatherAdapter extends BaseAdapter {
         holder.temperatureMinLabel.setText(Integer.toString(dailyWeather.getTemperatureMin()));
         holder.temperatureMaxLabel.setText(Integer.toString(dailyWeather.getTemperatureMax()));
 
+        // This checks to see if the position in the holder is the first position.
+        // If it is, that means that it is the current day and that it should be called Today
+        // instead of by its name of the day of the week.
         if (position == 0) {
             holder.dayLabel.setText("Today");
         } else {
