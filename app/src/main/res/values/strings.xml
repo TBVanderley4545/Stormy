@@ -13,6 +13,6 @@
     <string name="precip_chance_label">Precipitation Chance</string>
     <string name="time_label_setter">At %1$s it will be.</string>
     <string name="hourly_button">HOURLY</string>
-    <string name="daily_button">DAILY</string>
+    <string name="daily_button">7 DAY</string>
     <string name="no_daily_forecast_data">There is no data to display</string>
 </resources>

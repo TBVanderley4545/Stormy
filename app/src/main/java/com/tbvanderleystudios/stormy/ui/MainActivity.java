@@ -1,6 +1,7 @@
 package com.tbvanderleystudios.stormy.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,6 +27,7 @@ import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -315,5 +317,12 @@ public class MainActivity extends AppCompatActivity {
     private void alertUserAboutNetworkError() {
         NoNetworkDialogFragment dialog = new NoNetworkDialogFragment();
         dialog.show(getFragmentManager(), getString(R.string.error_dialog_tag));
+    }
+
+    // This uses ButterKnife to add a click event to the dailyButton
+    @OnClick (R.id.dailyButton)
+    public void startDailyActivity(View view) {
+        Intent intent = new Intent(this, DailyForecastActivity.class);
+        startActivity(intent);
     }
 }
