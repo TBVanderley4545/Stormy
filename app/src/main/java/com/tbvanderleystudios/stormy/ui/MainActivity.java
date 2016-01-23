@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     jsonDay.getDouble("temperatureMax"),
                     jsonDay.getDouble("temperatureMin"),
                     jsonDay.getString("icon"),
-                    jsonDay.getString(timezone)
+                    timezone
             );
 
             dailyForecasts[i] = day;
