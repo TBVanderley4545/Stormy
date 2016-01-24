@@ -41,7 +41,8 @@ public class HourlyForecastActivity extends AppCompatActivity {
         HourlyWeatherAdapter adapter = new HourlyWeatherAdapter(mHourlyWeathers);
         mRecyclerView.setAdapter(adapter);
 
-        // Set the LayoutManger for the RecyclerView.
+        // Set the LayoutManger for the RecyclerView. Layout Managers help determine
+        // if a list item is no longer visible and can be reused.
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
