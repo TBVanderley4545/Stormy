@@ -38,7 +38,7 @@ public class HourlyForecastActivity extends AppCompatActivity {
         mHourlyWeathers = Arrays.copyOf(parcelables, parcelables.length, HourlyWeather[].class);
 
         // Set the Adapter for the RecyclerView
-        HourlyWeatherAdapter adapter = new HourlyWeatherAdapter(mHourlyWeathers);
+        HourlyWeatherAdapter adapter = new HourlyWeatherAdapter(this, mHourlyWeathers);
         mRecyclerView.setAdapter(adapter);
 
         // Set the LayoutManger for the RecyclerView. Layout Managers help determine
