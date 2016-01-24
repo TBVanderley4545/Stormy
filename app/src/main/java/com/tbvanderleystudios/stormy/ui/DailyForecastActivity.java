@@ -24,7 +24,7 @@ public class DailyForecastActivity extends ListActivity {
         // Get the parcelable objects from the intent, and store them in a Parcelable array called
         // parcelables
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
-        // Copy the array of Parcelable objects into an array of DailyWeather objecs.
+        // Copy the array of Parcelable objects into an array of DailyWeather objects.
         mDailyWeathers = Arrays.copyOf(parcelables, parcelables.length, DailyWeather[].class);
 
         // Instantiate a DailyWeatherAdapter here.

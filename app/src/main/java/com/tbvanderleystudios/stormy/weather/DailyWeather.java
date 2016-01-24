@@ -93,7 +93,6 @@ public class DailyWeather implements Parcelable {
     /*
      * The methods below this comment deal with required methods for implementing Parcelable
      */
-
     @Override
     public int describeContents() {
         return 0;
